@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/industry-709b316d-4c24-4902-8643-e9f2691878a2/styles.css">
+<script src="_ds/industry-709b316d-4c24-4902-8643-e9f2691878a2/_ds_bundle.js"></script>
+<script src="bemanningsplan-data-demo.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap">
+<style>
+  :root {
+    --color-accent-100: #e9f5ec; --color-accent-200: #c9e8d4; --color-accent-300: #9ad4b0;
+    --color-accent-400: #5cbc86; --color-accent-500: #16a35a; --color-accent: #008f3c;
+    --color-accent-600: #008f3c; --color-accent-700: #007a33; --color-accent-800: #005b26;
+    --color-accent-900: #00301a;
+    --color-bg: #f4f6f4; --color-text: #14181a;
+  }
+  html, body { margin: 0; background: #0b1210; overflow: hidden; }
+  a { color: var(--color-accent-700); }
+  a:hover { color: var(--color-accent-900); }
+</style>
+</helmet>
+<div style="position: relative; width: 100vw; height: 100vh; overflow: hidden; background: #0d1218">
+<div ref="{{ stageRef }}" style="position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; transform-origin: 0 0; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); display: grid; grid-template-rows: 128px 104px 1fr 70px">
+
+  <header style="display: flex; align-items: center; gap: 34px; padding: 0 46px; background: var(--color-accent-900); color: #fff">
+    <div style="display: flex; flex-direction: column; gap: 3px">
+      <div style="display: flex; align-items: center; gap: 11px">
+        <span style="width: 13px; height: 26px; background: var(--color-accent); flex: none"></span>
+        <span style="font-family: var(--font-heading); font-size: 30px; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1">Caverion</span>
+      </div>
+      <div style="font-family: var(--font-heading); font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--color-accent-300); white-space: nowrap">Avd. Tromsø · Bemanning i dag</div>
+    </div>
+    <div style="width: 1px; height: 66px; background: rgba(255,255,255,0.22)"></div>
+    <div style="display: flex; align-items: baseline; gap: 20px; white-space: nowrap">
+      <span style="font-family: var(--font-heading); font-size: 60px; line-height: 1">{{ dayName }}</span>
+      <span style="font-family: var(--font-heading); font-size: 34px; color: rgba(255,255,255,0.78)">{{ dateLong }}</span>
+      <span style="font-family: var(--font-heading); font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-accent-300)">Uke {{ weekNo }}</span>
+    </div>
+    <div style="margin-left: auto; display: flex; align-items: center; gap: 30px; white-space: nowrap">
+      <div style="display: flex; flex-direction: column; align-items: flex-end">
+        <span style="font-family: var(--font-heading); font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-300)">Plan</span>
+        <span style="font-family: var(--font-heading); font-size: 22px">{{ updatedNote }}</span>
+      </div>
+      <div style="font-family: var(--font-heading); font-size: 58px; line-height: 1; font-variant-numeric: tabular-nums">{{ clock }}</div>
+    </div>
+  </header>
+
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; padding: 16px 46px; border-bottom: 1px solid var(--color-accent-300)">
+    <div class="blueprint" style="border: 1px solid var(--color-accent); background: var(--color-accent); color: #fff; padding: 8px 16px; display: flex; align-items: baseline; gap: 12px">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <span style="font-family: var(--font-heading); font-size: 46px; line-height: 1">{{ statSite }}</span>
+      <span style="font-family: var(--font-heading); font-size: 16px; line-height: 1.2; letter-spacing: 0.11em; text-transform: uppercase; color: rgba(255,255,255,0.85)">Ute på oppdrag</span>
+    </div>
+    <div class="blueprint" style="border: 1px solid var(--color-accent-300); padding: 8px 16px; display: flex; align-items: baseline; gap: 12px">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <span style="font-family: var(--font-heading); font-size: 46px; line-height: 1">{{ statOffice }}</span>
+      <span style="font-family: var(--font-heading); font-size: 16px; line-height: 1.2; letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-neutral-700)">Kontor og prosjektering</span>
+    </div>
+    <div class="blueprint" style="border: 1px solid var(--color-accent-300); padding: 8px 16px; display: flex; align-items: baseline; gap: 12px">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <span style="font-family: var(--font-heading); font-size: 46px; line-height: 1">{{ statAbsent }}</span>
+      <span style="font-family: var(--font-heading); font-size: 16px; line-height: 1.2; letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-neutral-700)">Fravær og permisjon</span>
+    </div>
+    <div class="blueprint" style="border: 1px solid var(--color-accent-300); padding: 8px 16px; display: flex; align-items: baseline; gap: 12px">
+      <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <span style="font-family: var(--font-heading); font-size: 46px; line-height: 1">{{ statHours }}</span>
+      <span style="font-family: var(--font-heading); font-size: 16px; line-height: 1.2; letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-neutral-700)">Planlagte timer i dag</span>
+    </div>
+  </div>
+
+  <section style="padding: 20px 46px 12px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; min-height: 0">
+    <sc-for list="{{ columns }}" as="col" hint-placeholder-count="3">
+      <div style="display: flex; flex-direction: column; gap: 3px; min-height: 0">
+        <sc-for list="{{ col.items }}" as="item" hint-placeholder-count="18">
+          <div style="min-height: 0">
+            <sc-if value="{{ item.isGroup }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0 5px">
+                <span style="font-family: var(--font-heading); font-size: 20px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-700); white-space: nowrap; flex: none">{{ item.name }}</span>
+                <span style="flex: 1; height: 1px; background: var(--color-accent-300)"></span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ item.isPerson }}" hint-placeholder-val="{{ true }}">
+              <div style="display: grid; grid-template-columns: 244px 1fr; gap: 8px; align-items: stretch; min-height: 40px">
+                <div style="display: flex; align-items: center; padding-right: 10px; overflow: hidden">
+                  <span style="font-family: var(--font-heading); font-size: 24px; line-height: 1.05">{{ item.name }}</span>
+                </div>
+                <sc-if value="{{ item.isJob }}" hint-placeholder-val="{{ true }}">
+                  <div style="box-sizing: border-box; border: 1px solid var(--color-accent-400); border-left: 4px solid var(--color-accent-700); background: #fff; padding: 4px 11px; display: flex; align-items: center; gap: 9px; overflow: hidden">
+                    <span style="font-family: var(--font-heading); font-size: 22px; line-height: 1.15; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ item.label }}</span>
+                    <sc-if value="{{ item.isNew }}" hint-placeholder-val="{{ false }}">
+                      <span style="font-family: var(--font-heading); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; background: var(--color-accent-700); padding: 1px 5px; flex: none">Ny</span>
+                    </sc-if>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ item.isOffice }}" hint-placeholder-val="{{ false }}">
+                  <div style="box-sizing: border-box; border: 1px solid var(--color-accent-300); background: var(--color-accent-100); padding: 4px 11px; display: flex; align-items: center; overflow: hidden">
+                    <span style="font-family: var(--font-heading); font-size: 22px; line-height: 1.15; color: var(--color-accent-800); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ item.label }}</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ item.isAbsent }}" hint-placeholder-val="{{ false }}">
+                  <div style="box-sizing: border-box; border: 1px solid var(--color-neutral-300); background: repeating-linear-gradient(135deg, transparent 0 7px, rgba(29,31,32,0.08) 7px 8px); padding: 4px 11px; display: flex; align-items: center; overflow: hidden">
+                    <span style="font-family: var(--font-heading); font-size: 21px; line-height: 1.15; letter-spacing: 0.04em; color: var(--color-neutral-700); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ item.label }}</span>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ item.isEmpty }}" hint-placeholder-val="{{ false }}">
+                  <div style="display: flex; align-items: flex-end; padding-bottom: 4px">
+                    <span style="flex: 1; border-bottom: 1px dotted var(--color-neutral-300)"></span>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </section>
+
+  <footer style="display: flex; align-items: center; gap: 30px; padding: 0 46px; border-top: 1px solid var(--color-accent-300)">
+    <div style="display: flex; align-items: center; gap: 20px; flex: none">
+      <div style="display: flex; align-items: center; gap: 9px; font-size: 16px">
+        <span style="width: 28px; height: 17px; border: 1px solid var(--color-accent-400); border-left: 4px solid var(--color-accent-700); background: #fff; flex: none"></span>
+        <span>Oppdrag</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 9px; font-size: 16px">
+        <span style="width: 28px; height: 17px; border: 1px solid var(--color-accent-300); background: var(--color-accent-100); flex: none"></span>
+        <span>Kontor</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 9px; font-size: 16px">
+        <span style="width: 28px; height: 17px; border: 1px solid var(--color-neutral-300); background: repeating-linear-gradient(135deg, transparent 0 7px, rgba(29,31,32,0.08) 7px 8px); flex: none"></span>
+        <span>Fravær</span>
+      </div>
+    </div>
+    <div style="width: 1px; height: 34px; background: var(--color-accent-300); flex: none"></div>
+    <div style="display: flex; align-items: baseline; gap: 14px; min-width: 0; flex: 1">
+      <span style="font-family: var(--font-heading); font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent-700); flex: none; white-space: nowrap">Endret fra i går</span>
+      <span style="font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ changesText }}</span>
+    </div>
+    <div style="font-size: 16px; color: var(--color-neutral-700); flex: none">{{ sourceNote }}</div>
+  </footer>
+  <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#00301a"/><rect x="60" y="60" width="80" height="80" fill="none" stroke="#008f3c" stroke-width="4"/><text x="100" y="128" font-family="Barlow Condensed, sans-serif" font-size="64" font-weight="700" fill="#ffffff" text-anchor="middle">C</text></svg></template>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1920,&quot;height&quot;:1080},&quot;dataUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Data&quot;},&quot;dateOverride&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Visning&quot;},&quot;showEmpty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Visning&quot;}}">
+const DAY_NAMES = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"];
+const MONTHS = ["januar","februar","mars","april","mai","juni","juli","august","september","oktober","november","desember"];
+const ABSENT = /(ferie|syk|avspaser|permisjon|fri\b|fri\?|afp|skole|pappa|hjemmekontor|frisør|tannlege)/i;
+const OFFICE = /(kontor|prosjektering|tilbud|befaring|oppfølging|div\b|planlegging|møte|flytting)/i;
+
+function classify(raw) {
+  const v = (raw || "").replace(/\s+/g, " ").trim();
+  if (!v) return { kind: "empty", label: "" };
+  const label = v.charAt(0).toUpperCase() + v.slice(1);
+  if (ABSENT.test(v) && !/prosjekt|oppdrag/i.test(v)) return { kind: "absent", label };
+  if (OFFICE.test(v)) return { kind: "office", label };
+  return { kind: "job", label };
+}
+const norm = s => (s || "").replace(/\s+/g, " ").trim().toLowerCase();
+const iso = d => d.toISOString().slice(0, 10);
+
+class Component extends DCLogic {
+  state = { clock: "", ready: !!window.BEMANNING };
+
+  componentDidMount() {
+    this.fit();
+    this._onResize = () => this.fit();
+    window.addEventListener("resize", this._onResize);
+    if (window.ResizeObserver && this._stage && this._stage.parentElement) {
+      this._ro = new ResizeObserver(() => this.fit());
+      this._ro.observe(this._stage.parentElement);
+    }
+    this.tick();
+    this._clock = setInterval(() => this.tick(), 15000);
+    if (this.props.dataUrl || this.param("data")) {
+      this.load();
+      this._reload = setInterval(() => this.load(), 15 * 60 * 1000);
+    }
+    if (!window.BEMANNING) {
+      this._poll = setInterval(() => {
+        if (window.BEMANNING) { clearInterval(this._poll); this.setState({ ready: true }); }
+      }, 120);
+    }
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this._onResize);
+    if (this._ro) this._ro.disconnect();
+    clearInterval(this._clock); clearInterval(this._poll); clearInterval(this._reload);
+  }
+  param(name) {
+    try { return new URLSearchParams(location.search).get(name) || ""; } catch (e) { return ""; }
+  }
+  load() {
+    const url = this.props.dataUrl || this.param("data");
+    if (!url) return;
+    fetch(url + (url.indexOf("?") < 0 ? "?" : "&") + "t=" + Date.now(), { cache: "no-store" })
+      .then(r => r.ok ? r.json() : Promise.reject(r.status))
+      .then(json => {
+        if (json && json.weeks && json.groups) this.setState({ remote: json, fetchedAt: new Date() });
+      })
+      .catch(() => this.setState({ fetchFailed: true }));
+  }
+  tick() {
+    const d = new Date();
+    this.setState({ clock: String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0") });
+  }
+  fit() {
+    const el = this._stage;
+    if (!el) return;
+    el.style.margin = "0";
+    const box = el.parentElement.getBoundingClientRect();
+    const s = Math.min(box.width / 1920, box.height / 1080);
+    const x = Math.round((box.width - 1920 * s) / 2), y = Math.round((box.height - 1080 * s) / 2);
+    el.style.transform = "translate(" + x + "px, " + y + "px) scale(" + s + ")";
+  }
+
+  today() {
+    const o = this.props.dateOverride || this.param("date");
+    if (o && /^\d{4}-\d{2}-\d{2}$/.test(o)) return o;
+    return iso(new Date());
+  }
+
+  balance(groups) {
+    const cols = [{ items: [], cost: 0 }, { items: [], cost: 0 }, { items: [], cost: 0 }];
+    let remaining = groups.reduce((a, g) => a + g.people.length + 0.9, 0);
+    let ci = 0;
+    for (const g of groups) {
+      const cost = g.people.length + 0.9;
+      const target = remaining / (3 - ci);
+      if (ci < 2 && cols[ci].cost > 0 && cols[ci].cost + cost / 2 > target) {
+        remaining -= cols[ci].cost;
+        ci++;
+      }
+      cols[ci].items.push({ isGroup: true, isPerson: false, name: g.name });
+      for (const p of g.people) cols[ci].items.push(p);
+      cols[ci].cost += cost;
+    }
+    return cols;
+  }
+
+  renderVals() {
+    const data = this.state.remote || window.BEMANNING;
+    if (!data) return {};
+    const day = this.today();
+    const wk = data.weeks.find(w => day >= w.start && day <= w.end) || data.weeks[data.weeks.length - 1];
+    const d = new Date(day + "T00:00:00Z");
+    const dayIdx = (d.getUTCDay() + 6) % 7;
+    const yIdx = dayIdx === 0 ? 4 : dayIdx - 1;
+    const prevWeek = data.weeks.find(w => w.week === wk.week - 1);
+    const yesterdayCells = dayIdx === 0 ? (prevWeek ? prevWeek.cells : {}) : wk.cells;
+
+    const showEmpty = this.props.showEmpty ?? false;
+    const groups = [];
+    let site = 0, office = 0, absent = 0, planned = 0;
+    const changes = [];
+
+    for (const g of data.groups) {
+      const people = [];
+      for (const p of g.people) {
+        const c = classify((wk.cells[p.id] || [])[dayIdx]);
+        if (c.kind === "job") site++;
+        else if (c.kind === "office") office++;
+        else if (c.kind === "absent") absent++;
+        if (c.kind === "job" || c.kind === "office") planned++;
+        if (c.kind === "empty" && !showEmpty) continue;
+        const yRaw = (yesterdayCells[p.id] || [])[yIdx];
+        const isNew = c.kind === "job" && !!norm(yRaw) && norm(yRaw) !== norm(c.label);
+        if (isNew) changes.push(p.name + ": " + c.label);
+        people.push({
+          isGroup: false, isPerson: true, name: p.name, label: c.label,
+          isJob: c.kind === "job", isOffice: c.kind === "office",
+          isAbsent: c.kind === "absent", isEmpty: c.kind === "empty", isNew
+        });
+      }
+      if (people.length) groups.push({ name: g.name, people });
+    }
+
+    return {
+      stageRef: el => { this._stage = el; this.fit(); },
+      clock: this.state.clock,
+      dayName: DAY_NAMES[dayIdx],
+      dateLong: +day.slice(8) + ". " + MONTHS[+day.slice(5, 7) - 1] + " " + day.slice(0, 4),
+      weekNo: wk.week,
+      columns: this.balance(groups),
+      statSite: site,
+      statOffice: office,
+      statAbsent: absent,
+      statHours: (planned * 7.5).toLocaleString("nb-NO"),
+      changesText: changes.length ? changes.slice(0, 4).join("   ·   ") : "Ingen endringer registrert",
+      updatedNote: this.state.fetchedAt
+        ? "Hentet " + this.state.fetchedAt.toLocaleTimeString("nb-NO", { hour: "2-digit", minute: "2-digit" })
+        : "Uke " + wk.week + " i planen",
+      sourceNote: this.state.fetchFailed && !this.state.remote
+        ? "Kunne ikke hente oppdatert plan – viser lagret versjon"
+        : "Kilde: Bemanningsplan 2026, ark «Ukentlig timeplan»"
+    };
+  }
+}
+</script>
+</body>
+</html>
